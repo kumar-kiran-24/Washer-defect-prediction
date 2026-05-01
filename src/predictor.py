@@ -7,10 +7,10 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import load_img, img_to_array
-from pipeline.model_loader import ModelLoader
+from src.pipeline.model_loader import ModelLoader
 
 class Predictor:
-    def __init__(self, model):\
+    def __init__(self):\
         self.model_loader = ModelLoader()
         
     def predict_image(self, img_path):
@@ -23,9 +23,7 @@ class Predictor:
         img_array = img_to_array(img)
 
 
-        # ----------------------------
-        # PREPROCESS
-        # ----------------------------
+       
         img_array = np.expand_dims(img_array, axis=0)
         img_array = tf.keras.applications.efficientnet.preprocess_input(img_array)
 
